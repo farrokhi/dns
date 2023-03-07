@@ -282,6 +282,7 @@ func (co *Conn) ReadMsg() (*Msg, error) {
 		// Need to work on the original message p, as that was used to calculate the tsig.
 		err = TsigVerifyWithProvider(p, co.tsigProvider(), co.tsigRequestMAC, false)
 	}
+	m.PktLen = len(p)
 	return m, err
 }
 
